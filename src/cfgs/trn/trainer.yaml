@@ -1,0 +1,35 @@
+# @package _group_
+epochs: 100
+batch_size: 32
+train_len: ${data.train_len}
+lr: 0.001
+lr_min: 0.0001
+max_lr: 0.0005
+weight_decay: 1e-5
+scheduler: onecyclelr
+perform_swa: False
+swa:
+    start_epoch: 40
+    anneal_strategy: 'cos'
+    anneal_epochs: 5
+    swa_lr: 0.001
+use_adversarial_attacks: False
+adversarial_attacks:
+  steps: 10
+  eps: 2.
+  alpha: 0.1
+  log_interval: 500
+torch_manual_seed: 1
+num_data_loader_workers: 0
+use_mixed: False
+show_pbar: True
+use_meta_trainer: False
+meta_trainer:
+  num_iters: 100000
+  num_tasks_per_iter: 3
+  eval_every_num_iters: 1000
+  num_val_iters_per_task: 100
+  inner_loop_optim:
+    lr: 1e-5
+    weight_decay: 1e-5
+  datasets_cfg_list: []

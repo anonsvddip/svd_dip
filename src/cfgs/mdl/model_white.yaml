@@ -1,0 +1,51 @@
+# @package _group_
+arch:
+  use_svd_replacement: False
+  # it probably only makes sense to replace up and down layers.
+  svd_replace_inc: False
+  svd_replace_down: 6 # replaces the lowest (last) blocks first
+  svd_replace_up: 6   # replaces the lowest (first) blocks first
+  svd_replace_skip: False
+  svd_replace_outc: False
+
+  # svd_rank_frac and svd_cutoff_threshold are exclusive. If 0 <= svd_cutoff_threshold < 1, svd_rank_frac is ignored.
+  svd_cutoff_threshold: -1 # 0 <= svd_cutoff_threshold < 1.  All values <= svd_cutoff_threshold*maximum singular value are cut off. (0 leads to no cutoff). Also called "adaptive_threshold". Set outside of bounds to use svd_rank_frac.
+  svd_rank_frac: 1         # 0 < svd_rank_frac < 1. svd_rank_frac gives the portion of lowest SVs that are cut off, e.g. with svd_rank_frac=0.25, the bottom quarter of singular values are discarded. (Values >= 1 lead to no cutoff)
+
+  scales: 6
+  channels: [128, 128, 128, 128, 128, 128]
+  skip_channels: [0, 0, 0, 0, 4, 4]
+  use_norm: True
+  norm_type: group
+  use_sigmoid: False
+  use_relu_out: null  # options: 'post' (applied on returned image)
+optim:
+  lr: 1e-4
+  init_lr: 1e-7
+  num_warmup_iter: null
+  encoder:
+    lr: ${mdl.optim.lr}
+    init_lr: ${mdl.optim.init_lr}
+    num_warmup_iter: ${mdl.optim.num_warmup_iter}
+  decoder:
+    lr: ${mdl.optim.lr}
+    init_lr: ${mdl.optim.init_lr}
+    num_warmup_iter: ${mdl.optim.num_warmup_iter}
+  iterations: 10000
+  loss_function: mse
+  mse_sure_sigma: from_ground_truth
+  mse_sure_epsilon: 1e-3
+  mse_sure_use_BP_variant: False
+  gamma: 1e-4
+  photons_per_pixel: null
+  mu_max: null
+  use_radam: False
+return_iterates_selection:
+  mode: 'standard_sequence'
+  manual_iters: null
+return_iterates_params_selection:
+  mode: 'standard_sequence'
+  manual_iters: null
+show_pbar: True
+torch_manual_seed: 10
+use_mixed: False

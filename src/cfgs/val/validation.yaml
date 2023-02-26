@@ -1,0 +1,20 @@
+# @package _group_
+baseline_run_path: null
+multirun_base_paths: null
+exclude_re: null
+load_histories_from_run_path: null
+run_paths_filename: val_run_paths.json
+results_filename: val_results.json
+results_sorted_filename: val_results_sorted.json
+num_repeats: 5
+mdl_overrides:
+  optim.iterations: 15000
+psnr_steady_start: -5000
+psnr_steady_stop: null
+rise_time_remaining_psnr: 0.1
+rise_time_to_baseline_remaining_psnr: 0.1
+tolerated_diff_to_max_psnr_steady: 0.25
+select_gamma_multirun_base_paths: null
+select_gamma_run_paths_filename: select_gamma_run_paths.json
+select_gamma_results_filename: select_gamma_results.json
+select_gamma_results_sorted_filename: select_gamma_results_sorted.json

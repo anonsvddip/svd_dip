@@ -1,0 +1,14 @@
+defaults:
+  - data: standard_ellipses_lotus_20
+  - mdl:  model_white
+  - trn:  trainer
+  - val:  validation
+  - spct: spectral_analysis 
+
+pretraining: ???
+validation_run: False
+save_reconstruction_path: ???
+save_histories_path: null
+save_iterates_path: null
+save_iterates_params_path: null
+torch_manual_seed_pretrain_init_model: 20
